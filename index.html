@@ -323,7 +323,7 @@
     </section>
 
     <!-- Screenshots Carousel -->
-    <section id="screenshots" class="py-20 bg-gray-100">
+    <section id="screenshots"  class="py-20 bg-gray-100">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-fadeInUp">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
@@ -336,83 +336,68 @@
 
             <!-- Carousel -->
             <div class="relative">
-                <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto pb-8 px-4">
-                    <!-- Screenshot 1 -->
+                <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto pb-8 px-4" style="scrollbar-width: none; -ms-overflow-style: none;">
+                    <!-- Screenshot 1 - Accueil -->
                     <div class="flex-shrink-0 w-72">
                         <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="bg-gradient-to-br from-blue-500 to-purple-600 h-64 flex items-center justify-center">
-                                <div class="text-center text-white p-8">
-                                    <i class="fas fa-home text-6xl mb-4"></i>
-                                    <h3 class="text-2xl font-bold">Écran d'accueil</h3>
-                                    <p class="text-sm mt-2 opacity-90">Stats globales & accès rapide</p>
-                                </div>
+                            <div class="h-80 bg-white flex items-center justify-center p-2">
+                                <img src="img/home.png" alt="Écran d'accueil SmartNumber" class="w-full h-full object-contain">
                             </div>
-                            <div class="p-4">
-                                <p class="text-gray-700 text-sm">Placez votre screenshot ici</p>
+                            <div class="p-4 bg-white">
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">Accueil</h3>
+                                <p class="text-gray-600 text-sm">Lancez une partie rapide ou choisissez votre mode de jeu préféré</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Screenshot 2 -->
+                    <!-- Screenshot 2 - Niveaux -->
                     <div class="flex-shrink-0 w-72">
                         <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="bg-gradient-to-br from-green-500 to-teal-600 h-64 flex items-center justify-center">
-                                <div class="text-center text-white p-8">
-                                    <i class="fas fa-trophy text-6xl mb-4"></i>
-                                    <h3 class="text-2xl font-bold">Niveaux</h3>
-                                    <p class="text-sm mt-2 opacity-90">5 défis uniques</p>
-                                </div>
+                            <div class="h-80 bg-white flex items-center justify-center p-2">
+                                <img src="img/levels.png" alt="Sélection des niveaux" class="w-full h-full object-contain">
                             </div>
-                            <div class="p-4">
-                                <p class="text-gray-700 text-sm">Placez votre screenshot ici</p>
+                            <div class="p-4 bg-white">
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">5 Niveaux de difficulté</h3>
+                                <p class="text-gray-600 text-sm">Du débutant à l'expert, choisissez le défi qui vous correspond</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Screenshot 3 -->
+                    <!-- Screenshot 3 - Interface de jeu -->
                     <div class="flex-shrink-0 w-72">
                         <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="bg-gradient-to-br from-orange-500 to-red-600 h-64 flex items-center justify-center">
-                                <div class="text-center text-white p-8">
-                                    <i class="fas fa-gamepad text-6xl mb-4"></i>
-                                    <h3 class="text-2xl font-bold">En jeu</h3>
-                                    <p class="text-sm mt-2 opacity-90">Interface de jeu fluide</p>
-                                </div>
+                            <div class="h-80 bg-white flex items-center justify-center p-2">
+                                <img src="img/games.png" alt="Interface de jeu" class="w-full h-full object-contain">
                             </div>
-                            <div class="p-4">
-                                <p class="text-gray-700 text-sm">Placez votre screenshot ici</p>
+                            <div class="p-4 bg-white">
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">Partie en cours</h3>
+                                <p class="text-gray-600 text-sm">Timer, indices et feedback en temps réel pour une expérience immersive</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Screenshot 4 -->
+                    <!-- Screenshot 4 - Statistiques -->
                     <div class="flex-shrink-0 w-72">
                         <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-64 flex items-center justify-center">
-                                <div class="text-center text-white p-8">
-                                    <i class="fas fa-chart-line text-6xl mb-4"></i>
-                                    <h3 class="text-2xl font-bold">Statistiques</h3>
-                                    <p class="text-sm mt-2 opacity-90">Progression détaillée</p>
-                                </div>
+                            <div class="h-80 bg-white flex items-center justify-center p-2">
+                                <img src="img/stats.png" alt="Statistiques détaillées" class="w-full h-full object-contain">
                             </div>
-                            <div class="p-4">
-                                <p class="text-gray-700 text-sm">Placez votre screenshot ici</p>
+                            <div class="p-4 bg-white">
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">Statistiques</h3>
+                                <p class="text-gray-600 text-sm">Suivez votre progression avec des graphiques et données détaillées</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Screenshot 5 -->
+                    <!-- Screenshot 5 - Paramètres -->
                     <div class="flex-shrink-0 w-72">
                         <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="bg-gradient-to-br from-indigo-500 to-blue-600 h-64 flex items-center justify-center">
-                                <div class="text-center text-white p-8">
-                                    <i class="fas fa-cog text-6xl mb-4"></i>
-                                    <h3 class="text-2xl font-bold">Paramètres</h3>
-                                    <p class="text-sm mt-2 opacity-90">Personnalisez l'app</p>
-                                </div>
+                            <div class="h-80 bg-white flex items-center justify-center p-2">
+                                <img src="img/settings.png" alt="Paramètres de l'application" class="w-full h-full object-contain">
                             </div>
-                            <div class="p-4">
-                                <p class="text-gray-700 text-sm">Placez votre screenshot ici</p>
+                            <div class="p-4 bg-white">
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">Paramètres</h3>
+                                <p class="text-gray-600 text-sm">Personnalisez l'application selon vos préférences</p>
                             </div>
                         </div>
                     </div>
@@ -425,24 +410,6 @@
                 <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-4 shadow-lg hover:bg-gray-100 transition z-10">
                     <i class="fas fa-chevron-right text-gray-600"></i>
                 </button>
-            </div>
-
-            <!-- Instructions pour ajouter les screenshots -->
-            <div class="mt-12 max-w-3xl mx-auto bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg">
-                <div class="flex items-start">
-                    <i class="fas fa-info-circle text-yellow-600 text-2xl mr-4 mt-1"></i>
-                    <div>
-                        <h4 class="font-bold text-gray-800 mb-2">Comment ajouter vos screenshots</h4>
-                        <p class="text-gray-700 text-sm mb-2">
-                            Remplacez les placeholders colorés par vos vraies captures d'écran :
-                        </p>
-                        <ol class="list-decimal list-inside text-sm text-gray-700 space-y-1">
-                            <li>Trouvez les divs avec "bg-gradient-to-br" dans le carousel</li>
-                            <li>Remplacez par : <code class="bg-gray-200 px-2 py-1 rounded">&lt;img src="votre-image.png" alt="Screenshot" class="w-full h-64 object-cover"&gt;</code></li>
-                            <li>Supprimez le div coloré avec les icônes</li>
-                        </ol>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
