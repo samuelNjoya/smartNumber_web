@@ -1,598 +1,176 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartNumber - Le Jeu du Plus ou Moins Ultime</title>
-    <meta name="description" content="Testez votre logique avec SmartNumber, le jeu du Plus ou Moins nouvelle génération. 5 niveaux, statistiques détaillées, mode personnalisé.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        /* Animation personnalisées */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .animate-fadeInUp {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .animate-pulse-slow {
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        .animate-slideIn {
-            animation: slideIn 0.8s ease-out forwards;
-        }
-        
-        /* Gradient animé */
-        .gradient-bg {
-            background: linear-gradient(-45deg, #4A90E2, #50C878, #F39C12, #E74C3C);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Carousel personnalisé */
-        .carousel-container {
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .carousel-container::-webkit-scrollbar {
-            display: none;
-        }
-        
-        /* Card hover effect */
-        .feature-card {
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        
-        /* Button glow effect */
-        .btn-glow {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-glow::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-glow:hover::before {
-            left: 100%;
-        }
-        
-        /* Staggered animation delay */
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        
-        /* Screenshot shadow */
-        .screenshot-shadow {
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartNumber — Devinez le nombre</title>
+  <meta name="description" content="SmartNumber, le jeu de devinette de nombre. Solo contre l'IA ou à deux sur un téléphone. 5 niveaux, statistiques, mode personnalisé.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md shadow-md">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-gamepad text-3xl text-blue-600"></i>
-                    <span class="text-2xl font-bold text-gray-800">SmartNumber</span>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-700 hover:text-blue-600 transition">Fonctionnalités</a>
-                    <a href="#screenshots" class="text-gray-700 hover:text-blue-600 transition">Captures</a>
-                    <a href="#download" class="text-gray-700 hover:text-blue-600 transition">Télécharger</a>
-                </div>
-                <a href="#download" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition btn-glow">
-                    Obtenir l'app
-                </a>
-            </div>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark">SN</span>
+        <span class="brand-name">SmartNumber</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Fonctionnalités</a>
+        <a href="#screens">Captures</a>
+        <a href="#download">Télécharger</a>
+      </div>
+      <a href="#download" class="btn btn-primary btn-sm">Obtenir l'app</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Jeu de logique · Gratuit</p>
+        <h1>Devinez le nombre.<br>Ou faites-le deviner.</h1>
+        <p class="hero-sub">
+          Un nombre secret, une plage, un nombre limité d'essais.
+          Jouez seul contre l'IA, ou passez le téléphone à un ami.
+        </p>
+        <div class="hero-actions">
+          <a href="#download" class="btn btn-primary">Télécharger l'APK</a>
+          <a href="#features" class="btn btn-ghost">Voir les fonctionnalités</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 gradient-bg text-white overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="animate-fadeInUp">
-                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                        Le Jeu du Plus ou Moins
-                        <span class="block text-yellow-300">Nouvelle Génération</span>
-                    </h1>
-                    <p class="text-xl mb-8 text-gray-100">
-                        Testez votre logique et votre rapidité ! 5 niveaux de difficulté, statistiques détaillées, mode personnalisé illimité.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#download" class="bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition transform hover:scale-105 btn-glow flex items-center justify-center">
-                            <i class="fas fa-download mr-3"></i>
-                            Télécharger maintenant
-                        </a>
-                        <a href="#features" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-blue-600 transition flex items-center justify-center">
-                            <i class="fas fa-info-circle mr-3"></i>
-                            En savoir plus
-                        </a>
-                    </div>
-                    <div class="flex items-center gap-8 mt-8 text-sm">
-                        <div class="flex items-center">
-                            <i class="fas fa-star text-yellow-300 mr-2"></i>
-                            <span>5 Niveaux</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-chart-line text-green-300 mr-2"></i>
-                            <span>Stats détaillées</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-mobile-alt text-purple-300 mr-2"></i>
-                            <span>100% Gratuit</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="animate-float delay-200 hidden md:block">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-white/20 rounded-3xl blur-3xl"></div>
-                        <div class="relative bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-white/20">
-                            <div class="text-center">
-                                <i class="fas fa-trophy text-8xl text-yellow-300 mb-4"></i>
-                                <h3 class="text-3xl font-bold mb-2">Défiez-vous !</h3>
-                                <p class="text-gray-200">Plus de 100 000 nombres à deviner</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-meta">
+          <span>5 niveaux</span>
+          <span class="dot"></span>
+          <span>Mode 2 joueurs</span>
+          <span class="dot"></span>
+          <span>100 % gratuit</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 animate-fadeInUp">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                    Fonctionnalités Exceptionnelles
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Une expérience de jeu complète et professionnelle
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="feature-card bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border border-blue-200 animate-fadeInUp delay-100">
-                    <div class="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-layer-group text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">5 Niveaux de Difficulté</h3>
-                    <p class="text-gray-600 mb-4">
-                        Du Débutant (1-50) à l'Expert avec feedback avancé, progressez à votre rythme.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-700">
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Débutant & Facile</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Moyen avec timer</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Expert & Personnalisé</li>
-                    </ul>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="feature-card bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl border border-green-200 animate-fadeInUp delay-200">
-                    <div class="bg-green-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-chart-bar text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Statistiques Détaillées</h3>
-                    <p class="text-gray-600 mb-4">
-                        Suivez votre progression avec des graphiques et des statistiques complètes.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-700">
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Taux de victoire</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Graphiques de progression</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Historique détaillé</li>
-                    </ul>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="feature-card bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl border border-purple-200 animate-fadeInUp delay-300">
-                    <div class="bg-purple-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-cog text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Mode Personnalisé</h3>
-                    <p class="text-gray-600 mb-4">
-                        Créez vos propres défis avec intervalles, coups et timer personnalisables.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-700">
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Intervalles sur mesure</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Timer configurable</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Mode Expert activable</li>
-                    </ul>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="feature-card bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-2xl border border-orange-200 animate-fadeInUp delay-100">
-                    <div class="bg-orange-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-clock text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Timer Global</h3>
-                    <p class="text-gray-600 mb-4">
-                        Mettez-vous sous pression avec un chronomètre qui compte chaque seconde.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-700">
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Décompte visuel</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Changement de couleur</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Mode sans timer disponible</li>
-                    </ul>
-                </div>
-
-                <!-- Feature 5 -->
-                <div class="feature-card bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-2xl border border-red-200 animate-fadeInUp delay-200">
-                    <div class="bg-red-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-brain text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Mode Expert</h3>
-                    <p class="text-gray-600 mb-4">
-                        Feedback avancé "Plus ou moins de X" pour les joueurs confirmés.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-700">
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Indices approximatifs</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>6 intervalles variés</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Bonus de points</li>
-                    </ul>
-                </div>
-
-                <!-- Feature 6 -->
-                <div class="feature-card bg-gradient-to-br from-pink-50 to-pink-100 p-8 rounded-2xl border border-pink-200 animate-fadeInUp delay-300">
-                    <div class="bg-pink-600 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-mobile-alt text-3xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Interface Moderne</h3>
-                    <p class="text-gray-600 mb-4">
-                        Navigation intuitive avec onglets, animations fluides et vibrations tactiles.
-                    </p>
-                    <ul class="space-y-2 text-sm text-gray-700">
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Design professionnel</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Animations fluides</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Feedback vibration</li>
-                    </ul>
-                </div>
-            </div>
+      <!-- DEVICE MOCKUP -->
+      <div class="hero-device">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <img src="img/games.png" alt="Écran de jeu SmartNumber">
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </header>
 
-    <!-- Screenshots Carousel -->
-    <section id="screenshots"  class="py-20 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 animate-fadeInUp">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                    Découvrez l'Application
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Une interface soignée et intuitive pour une expérience optimale
-                </p>
-            </div>
+  <!-- FEATURES -->
+  <section id="features" class="section">
+    <div class="section-inner">
+      <div class="section-head">
+        <p class="eyebrow">Ce qui change</p>
+        <h2>Pensé pour être joué, pas juste regardé.</h2>
+      </div>
 
-            <!-- Carousel -->
-            <div class="relative">
-                <div id="carousel" class="carousel-container flex gap-6 overflow-x-auto pb-8 px-4" style="scrollbar-width: none; -ms-overflow-style: none;">
-                    <!-- Screenshot 1 - Accueil -->
-                    <div class="flex-shrink-0 w-72">
-                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="h-80 bg-white flex items-center justify-center p-2">
-                                <img src="img/home.png" alt="Écran d'accueil SmartNumber" class="w-full h-full object-contain">
-                            </div>
-                            <div class="p-4 bg-white">
-                                <h3 class="font-bold text-gray-800 text-lg mb-1">Accueil</h3>
-                                <p class="text-gray-600 text-sm">Lancez une partie rapide ou choisissez votre mode de jeu préféré</p>
-                            </div>
-                        </div>
-                    </div>
+      <div class="features">
+        <article class="feature">
+          <div class="feature-icon">◐</div>
+          <h3>5 niveaux, une seule logique</h3>
+          <p>Du Débutant (1–50) à l'Expert avec plages négatives et feedback avancé. Chaque niveau ajoute une contrainte, jamais de la confusion.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon">◑</div>
+          <h3>Mode 2 joueurs</h3>
+          <p>Un joueur choisit le nombre secret, l'autre devine. Le téléphone passe de main en main. Pas de compte, pas de réseau.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon">◒</div>
+          <h3>Configuration libre</h3>
+          <p>Choisissez la plage, le nombre d'essais, activez un chrono, ou passez en mode Expert. Le jeu s'adapte à votre niveau.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon">◓</div>
+          <h3>Statistiques utiles</h3>
+          <p>Taux de victoire, historique récent, progression par niveau. Pas de graphiques décoratifs : juste ce qui aide à progresser.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-                    <!-- Screenshot 2 - Niveaux -->
-                    <div class="flex-shrink-0 w-72">
-                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="h-80 bg-white flex items-center justify-center p-2">
-                                <img src="img/levels.png" alt="Sélection des niveaux" class="w-full h-full object-contain">
-                            </div>
-                            <div class="p-4 bg-white">
-                                <h3 class="font-bold text-gray-800 text-lg mb-1">5 Niveaux de difficulté</h3>
-                                <p class="text-gray-600 text-sm">Du débutant à l'expert, choisissez le défi qui vous correspond</p>
-                            </div>
-                        </div>
-                    </div>
+  <!-- SCREENS -->
+  <section id="screens" class="section section-alt">
+    <div class="section-inner">
+      <div class="section-head">
+        <p class="eyebrow">L'app en vrai</p>
+        <h2>Pas des concepts. L'interface réelle.</h2>
+      </div>
 
-                    <!-- Screenshot 3 - Interface de jeu -->
-                    <div class="flex-shrink-0 w-72">
-                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="h-80 bg-white flex items-center justify-center p-2">
-                                <img src="img/games.png" alt="Interface de jeu" class="w-full h-full object-contain">
-                            </div>
-                            <div class="p-4 bg-white">
-                                <h3 class="font-bold text-gray-800 text-lg mb-1">Partie en cours</h3>
-                                <p class="text-gray-600 text-sm">Timer, indices et feedback en temps réel pour une expérience immersive</p>
-                            </div>
-                        </div>
-                    </div>
+      <div class="screens">
+        <figure class="screen-item">
+          <div class="phone phone-sm">
+            <div class="phone-notch"></div>
+            <div class="phone-screen"><img src="img/home.png" alt="Accueil SmartNumber"></div>
+          </div>
+          <figcaption>Accueil</figcaption>
+        </figure>
+         <figure class="screen-item">
+          <div class="phone phone-sm">
+            <div class="phone-notch"></div>
+            <div class="phone-screen"><img src="img/twoplayers.png" alt="Statistiques"></div>
+          </div>
+          <figcaption>personnalisation pour deux joueurs</figcaption>
+        </figure>
+        <!-- <figure class="screen-item">
+          <div class="phone phone-sm">
+            <div class="phone-notch"></div>
+            <div class="phone-screen"><img src="img/games.png" alt="Partie en cours"></div>
+          </div>
+          <figcaption>Partie en cours</figcaption>
+        </figure> -->
+        <figure class="screen-item">
+          <div class="phone phone-sm">
+            <div class="phone-notch"></div>
+            <div class="phone-screen"><img src="img/stats.png" alt="Statistiques"></div>
+          </div>
+          <figcaption>Statistiques</figcaption>
+        </figure>
+         <figure class="screen-item">
+          <div class="phone phone-sm">
+            <div class="phone-notch"></div>
+            <div class="phone-screen"><img src="img/settings.png" alt="Statistiques"></div>
+          </div>
+          <figcaption>Paramètre</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-                    <!-- Screenshot 4 - Statistiques -->
-                    <div class="flex-shrink-0 w-72">
-                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="h-80 bg-white flex items-center justify-center p-2">
-                                <img src="img/stats.png" alt="Statistiques détaillées" class="w-full h-full object-contain">
-                            </div>
-                            <div class="p-4 bg-white">
-                                <h3 class="font-bold text-gray-800 text-lg mb-1">Statistiques</h3>
-                                <p class="text-gray-600 text-sm">Suivez votre progression avec des graphiques et données détaillées</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Screenshot 5 - Paramètres -->
-                    <div class="flex-shrink-0 w-72">
-                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden screenshot-shadow transform hover:scale-105 transition duration-300">
-                            <div class="h-80 bg-white flex items-center justify-center p-2">
-                                <img src="img/settings.png" alt="Paramètres de l'application" class="w-full h-full object-contain">
-                            </div>
-                            <div class="p-4 bg-white">
-                                <h3 class="font-bold text-gray-800 text-lg mb-1">Paramètres</h3>
-                                <p class="text-gray-600 text-sm">Personnalisez l'application selon vos préférences</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation buttons -->
-                <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-4 shadow-lg hover:bg-gray-100 transition z-10">
-                    <i class="fas fa-chevron-left text-gray-600"></i>
-                </button>
-                <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full p-4 shadow-lg hover:bg-gray-100 transition z-10">
-                    <i class="fas fa-chevron-right text-gray-600"></i>
-                </button>
-            </div>
+  <!-- DOWNLOAD -->
+  <section id="download" class="section">
+    <div class="section-inner">
+      <div class="download">
+        <div class="download-copy">
+          <h2>Prêt à jouer ?</h2>
+          <p>Téléchargez SmartNumber et commencez une partie en moins de dix secondes.</p>
         </div>
-    </section>
-
-    <!-- Download Section -->
-    <section id="download" class="py-20 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
-        <div class="container mx-auto px-6 text-center">
-            <div class="max-w-3xl mx-auto animate-fadeInUp">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    Prêt à Relever le Défi ?
-                </h2>
-                <p class="text-xl mb-12 text-gray-100">
-                    Téléchargez SmartNumber maintenant et testez votre logique !
-                </p>
-
-                <!-- Download Button -->
-                <a href="SmartNumber.apk" download class="inline-flex items-center bg-white text-blue-600 px-12 py-5 rounded-full font-bold text-xl hover:shadow-2xl transition transform hover:scale-110 btn-glow">
-                    <i class="fas fa-download mr-4 text-2xl"></i>
-                    Télécharger SmartNumber.apk
-                </a>
-
-                <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
-                    <div class="flex items-center">
-                        <i class="fas fa-shield-alt mr-2"></i>
-                        <span>100% Sécurisé</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-gift mr-2"></i>
-                        <span>Gratuit</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-mobile-alt mr-2"></i>
-                        <span>Android 5.0+</span>
-                    </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-file mr-2"></i>
-                        <span>~45 MB</span>
-                    </div>
-                </div>
-
-                <!-- Instructions d'installation -->
-                <div class="mt-12 bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                    <h3 class="text-2xl font-bold mb-6">Installation Rapide</h3>
-                    <div class="grid md:grid-cols-3 gap-6 text-left">
-                        <div>
-                            <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto md:mx-0">
-                                <span class="text-2xl font-bold">1</span>
-                            </div>
-                            <h4 class="font-bold mb-2">Téléchargez</h4>
-                            <p class="text-sm text-gray-200">Cliquez sur le bouton de téléchargement ci-dessus</p>
-                        </div>
-                        <div>
-                            <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto md:mx-0">
-                                <span class="text-2xl font-bold">2</span>
-                            </div>
-                            <h4 class="font-bold mb-2">Autorisez</h4>
-                            <p class="text-sm text-gray-200">Activez "Sources inconnues" dans les paramètres</p>
-                        </div>
-                        <div>
-                            <div class="bg-white/20 w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto md:mx-0">
-                                <span class="text-2xl font-bold">3</span>
-                            </div>
-                            <h4 class="font-bold mb-2">Installez</h4>
-                            <p class="text-sm text-gray-200">Ouvrez le fichier APK et installez l'application</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="download-action">
+          <a href="SmartNumber.apk" download class="btn btn-primary btn-lg">Télécharger l'APK</a>
+          <p class="download-note">Android 5.0+ · ~45 MB · Gratuit</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <i class="fas fa-gamepad text-3xl text-blue-500"></i>
-                        <span class="text-2xl font-bold text-white">SmartNumber</span>
-                    </div>
-                    <p class="text-sm">
-                        Le jeu du Plus ou Moins nouvelle génération. Testez votre logique !
-                    </p>
-                </div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark">SN</span>
+        <span class="brand-name">SmartNumber</span>
+      </div>
+      <p class="footer-note">© 2026 SmartNumber. Fait pour les gens qui aiment réfléchir.</p>
+    </div>
+  </footer>
 
-                <div>
-                    <h4 class="font-bold text-white mb-4">Navigation</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#features" class="hover:text-blue-400 transition">Fonctionnalités</a></li>
-                        <li><a href="#screenshots" class="hover:text-blue-400 transition">Captures d'écran</a></li>
-                        <li><a href="#download" class="hover:text-blue-400 transition">Télécharger</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold text-white mb-4">Support</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="https://wa.me/237690373513" class="hover:text-blue-400 transition flex items-center">
-                            <i class="fab fa-whatsapp mr-2"></i>WhatsApp
-                        </a></li>
-                        <li><a href="tel:+237690373513" class="hover:text-blue-400 transition flex items-center">
-                            <i class="fas fa-phone mr-2"></i>+237 690 373 513
-                        </a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold text-white mb-4">Informations</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Version 1.0.0</li>
-                        <li><i class="fas fa-android text-green-500 mr-2"></i>Android 5.0+</li>
-                        <li><i class="fas fa-download text-blue-500 mr-2"></i>Gratuit</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-800 pt-8 text-center text-sm">
-                <p>&copy; 2026 SmartNumber. Tous droits réservés.</p>
-                <p class="mt-2 text-gray-500">Développé avec <i class="fas fa-heart text-red-500"></i> pour les passionnés de logique</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll to top button -->
-    <button id="scrollTop" class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition transform hover:scale-110 opacity-0 pointer-events-none" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script>
-        // Carousel navigation
-        function scrollCarousel(direction) {
-            const carousel = document.getElementById('carousel');
-            const scrollAmount = 300;
-            carousel.scrollBy({
-                left: direction * scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-
-        // Scroll to top button visibility
-        window.addEventListener('scroll', function() {
-            const scrollTop = document.getElementById('scrollTop');
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.remove('opacity-0', 'pointer-events-none');
-                scrollTop.classList.add('opacity-100');
-            } else {
-                scrollTop.classList.add('opacity-0', 'pointer-events-none');
-                scrollTop.classList.remove('opacity-100');
-            }
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeInUp');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card').forEach(card => {
-            observer.observe(card);
-        });
-    </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
